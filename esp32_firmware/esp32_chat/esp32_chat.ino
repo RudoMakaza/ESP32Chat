@@ -101,7 +101,11 @@ void onDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) {
 }
 
 // Send status callback (only used to keep the PC informed).
+#if defined(ESP_ARDUINO_VERSION_MAJOR) && ESP_ARDUINO_VERSION_MAJOR >= 3
+void onDataSent(const esp_now_send_info_t *info, esp_now_send_status_t status) {
+#else
 void onDataSent(const uint8_t *mac, esp_now_send_status_t status) {
+#endif
   Serial.println(status == ESP_NOW_SEND_SUCCESS ? "ACK" : "ERR|send_timeout");
 }
 
