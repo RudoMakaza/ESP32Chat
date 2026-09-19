@@ -52,7 +52,11 @@ String serialBuf = "";        // partial line read from USB serial
 // ---------------------------------------------------------------------------
 
 // A chat frame arrived over the air -> forward it to the computer over USB.
+#if defined(ESP_ARDUINO_VERSION_MAJOR) && ESP_ARDUINO_VERSION_MAJOR >= 3
+void onDataRecv(const esp_now_recv_info_t *info, const uint8_t *incomingData, int len) {
+#else
 void onDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) {
+#endif
   if (len < 1) return;
   if (len > MAX_OTA_PAYLOAD) len = MAX_OTA_PAYLOAD;
   char buf[MAX_OTA_PAYLOAD + 1];

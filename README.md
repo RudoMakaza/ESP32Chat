@@ -119,6 +119,8 @@ regulator; no breadboard or external parts are required.
 5. Click **Upload**. Repeat for every ESP32 (they are all identical — no per-node
    setup or MAC-pairing is needed thanks to broadcast).
 
+> **Compatibility Note:** The firmware includes dual-compatibility preprocessor support for both modern ESP32 Arduino Core v3.x and legacy v2.x without requiring manual code modifications.
+
 ---
 
 ## 5. Run the Python interface
